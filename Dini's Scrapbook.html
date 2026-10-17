@@ -1,0 +1,1339 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hello, I'm Dini! | My Little Journal</title>
+
+    <!-- Menggunakan font dekoratif dan font tulisan tangan -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Patrick+Hand&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        /* =========================================
+           1. WARNA DAN PENGATURAN DASAR
+        ========================================= */
+
+        :root {
+            --blue: #b9ddec;
+            --blue-dark: #537f99;
+            --blue-light: #eaf6fa;
+            --pink: #f5cbd6;
+            --pink-dark: #c77f99;
+            --green: #d7e7cf;
+            --green-dark: #6e8967;
+            --cream: #fffdf7;
+            --paper: #fffefa;
+            --ink: #485966;
+            --muted: #7f8b91;
+            --line: #dce9ed;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.8;
+
+            /* Tekstur kertas dengan garis-garis halus */
+            background-color: #e8f3f6;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 27px,
+                    rgba(115, 159, 181, 0.12) 28px,
+                    transparent 29px
+                ),
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(255,255,255,0.85) 0 1px,
+                    transparent 2px
+                );
+            background-size: auto, 13px 13px;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .page {
+            width: min(1080px, 92%);
+            margin: 35px auto;
+            padding: 22px;
+            background: rgba(255, 253, 247, 0.92);
+            border: 1px solid #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(76, 117, 137, 0.13);
+        }
+
+        /* =========================================
+           2. NAVIGASI
+        ========================================= */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding: 12px 18px;
+            margin-bottom: 24px;
+            background: var(--blue-light);
+            border: 1px dashed #a6cbdc;
+            border-radius: 8px;
+        }
+
+        .brand {
+            color: var(--blue-dark);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.45rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .nav-links a {
+            color: var(--ink);
+            font-size: 0.83rem;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--pink-dark);
+            text-decoration: underline;
+        }
+
+        /* =========================================
+           3. KERTAS DAN DEKORASI SCRAPBOOK
+        ========================================= */
+
+        .paper {
+            position: relative;
+            background-color: var(--paper);
+
+            /* Tekstur titik seperti kertas jurnal */
+            background-image:
+                radial-gradient(
+                    rgba(110, 145, 160, 0.13) 0.7px,
+                    transparent 0.7px
+                );
+            background-size: 9px 9px;
+
+            border: 1px solid #eee7d9;
+            border-radius: 5px;
+            box-shadow: 3px 5px 0 rgba(126, 151, 159, 0.09);
+        }
+
+        .tape {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            width: 95px;
+            height: 25px;
+            transform: translateX(-50%) rotate(-3deg);
+            background: rgba(185, 221, 236, 0.75);
+            border-left: 1px dashed rgba(255,255,255,0.8);
+            border-right: 1px dashed rgba(255,255,255,0.8);
+            z-index: 2;
+        }
+
+        .tape.pink {
+            background: rgba(245, 203, 214, 0.82);
+            transform: translateX(-50%) rotate(3deg);
+        }
+
+        .tape.green {
+            background: rgba(215, 231, 207, 0.88);
+        }
+
+        .sticker {
+            display: inline-block;
+            padding: 5px 13px;
+            background: var(--pink);
+            border: 1px solid rgba(255,255,255,0.9);
+            border-radius: 4px;
+            color: #775965;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1rem;
+            transform: rotate(-3deg);
+            box-shadow: 1px 3px 0 rgba(120, 100, 100, 0.08);
+        }
+
+        .sticker.blue {
+            background: var(--blue);
+            color: #426c82;
+            transform: rotate(3deg);
+        }
+
+        .sticker.green {
+            background: var(--green);
+            color: #597451;
+            transform: rotate(-2deg);
+        }
+
+        /* =========================================
+           4. JUDUL SECTION
+        ========================================= */
+
+        .section {
+            position: relative;
+            margin: 32px 0;
+            padding: 55px 34px;
+            scroll-margin-top: 20px;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0 0 10px;
+            color: var(--blue-dark);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.7rem, 4vw, 2.5rem);
+            text-align: center;
+        }
+
+        .section-heading button {
+            padding: 0;
+            color: inherit;
+            background: transparent;
+            border: none;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .section-heading button:hover {
+            color: var(--pink-dark);
+        }
+
+        .section-heading button:focus-visible {
+            outline: 2px dashed var(--blue-dark);
+            outline-offset: 5px;
+        }
+
+        .section-subtitle {
+            margin: 0 0 28px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Emoji muncul ketika judul diklik */
+        .emoji-pop {
+            display: inline-block;
+            min-width: 30px;
+            font-family: sans-serif;
+            font-size: 1.45rem;
+        }
+
+        .emoji-pop.show {
+            animation: pop 0.35s ease-out;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.3) rotate(-20deg);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.3) rotate(10deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .click-hint {
+            display: block;
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        /* =========================================
+           5. OPENING / HERO
+        ========================================= */
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 40px;
+            min-height: 420px;
+            padding: 48px 38px;
+            overflow: hidden;
+            background-color: #f1f9fc;
+            background-image:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(185, 221, 236, 0.42) 0 65px,
+                    transparent 66px
+                ),
+                radial-gradient(
+                    circle at 90% 85%,
+                    rgba(245, 203, 214, 0.36) 0 90px,
+                    transparent 91px
+                );
+        }
+
+        .hero h1 {
+            margin: 17px 0;
+            color: #527e98;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.7rem, 6vw, 4.6rem);
+            line-height: 1.15;
+        }
+
+        .hero h1 span {
+            color: var(--pink-dark);
+            font-style: italic;
+        }
+
+        .hero-description {
+            max-width: 480px;
+            color: #667983;
+        }
+
+        .hero-note {
+            margin-top: 24px;
+            padding: 12px 15px;
+            background: #fff9e9;
+            border-left: 4px solid #e8d59a;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+        }
+
+        .hero-photo-area {
+            position: relative;
+            max-width: 300px;
+            margin: auto;
+        }
+
+        .photo-frame {
+            padding: 12px 12px 42px;
+            background: #fff;
+            box-shadow: 3px 7px 15px rgba(75, 102, 116, 0.17);
+            transform: rotate(3deg);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            background: #e0eef2;
+        }
+
+        .photo-caption {
+            position: absolute;
+            right: 0;
+            bottom: 7px;
+            left: 0;
+            color: #77838a;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .flower-decoration {
+            position: absolute;
+            top: -30px;
+            right: -24px;
+            font-size: 2.8rem;
+            transform: rotate(12deg);
+        }
+
+        .heart-decoration {
+            position: absolute;
+            bottom: 26px;
+            left: -28px;
+            font-size: 2.2rem;
+            transform: rotate(-12deg);
+        }
+
+        .hero-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 23px;
+        }
+
+        .button-link {
+            display: inline-block;
+            padding: 9px 18px;
+            border: 1px solid #9fc9db;
+            border-radius: 5px;
+            background: var(--blue);
+            color: #365f75;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .button-link.pink-button {
+            border-color: #e9bac9;
+            background: #f9dce4;
+            color: #8d5c70;
+        }
+
+        /* =========================================
+           6. ABOUT ME
+        ========================================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .about-note {
+            padding: 25px;
+            background-color: #eaf5fa;
+            border: 1px dashed #a8cbd9;
+            transform: rotate(-1deg);
+        }
+
+        .about-note h3,
+        .info-card h3 {
+            margin-top: 0;
+            color: var(--blue-dark);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.6rem;
+        }
+
+        .about-note p {
+            margin-bottom: 0;
+        }
+
+        .info-card {
+            padding: 22px;
+            background: #fff7f8;
+            border: 1px dashed #e8b9c9;
+        }
+
+        .info-list {
+            display: grid;
+            gap: 12px;
+            margin: 0;
+        }
+
+        .info-item {
+            display: grid;
+            grid-template-columns: 95px 1fr;
+            gap: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #eadce0;
+        }
+
+        .info-item dt {
+            color: var(--pink-dark);
+            font-weight: 700;
+        }
+
+        .info-item dd {
+            margin: 0;
+        }
+
+        .interest-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 23px;
+        }
+
+        /* =========================================
+           7. EXPERIENCE
+        ========================================= */
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .experience-photo {
+            position: relative;
+            padding: 12px 12px 38px;
+            background: white;
+            box-shadow: 2px 6px 13px rgba(75, 102, 116, 0.13);
+            transform: rotate(-2deg);
+        }
+
+        .experience-photo img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            background: #e1edf0;
+        }
+
+        .experience-photo figcaption {
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+            left: 5px;
+            font-family: 'Patrick Hand', cursive;
+            text-align: center;
+        }
+
+        .experience-copy p {
+            margin-top: 0;
+        }
+
+        .timeline {
+            margin-top: 22px;
+            padding-left: 21px;
+            border-left: 3px solid var(--blue);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 22px;
+            padding: 14px 16px;
+            background: #f0f7ed;
+            border-radius: 4px;
+        }
+
+        .timeline-item::before {
+            position: absolute;
+            top: 20px;
+            left: -29px;
+            width: 12px;
+            height: 12px;
+            content: "";
+            background: var(--pink);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px #d6a7b7;
+        }
+
+        .timeline-item:nth-child(2) {
+            background: #eef6fb;
+        }
+
+        .timeline-item:nth-child(3) {
+            background: #fff0f3;
+        }
+
+        .timeline-item h3 {
+            margin: 0 0 5px;
+            font-size: 1rem;
+        }
+
+        .timeline-item p {
+            margin: 0;
+            font-size: 0.88rem;
+        }
+
+        .year-label {
+            display: inline-block;
+            margin-bottom: 6px;
+            color: var(--green-dark);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1rem;
+        }
+
+        /* =========================================
+           8. HOBBIES: TIGA FOTO DALAM SATU BARIS
+        ========================================= */
+
+        .craft-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 30px;
+        }
+
+        .craft-card {
+            position: relative;
+            min-width: 0;
+            padding: 10px 10px 36px;
+            background: white;
+            border: 1px solid #eee9df;
+            box-shadow: 2px 5px 12px rgba(75, 102, 116, 0.11);
+        }
+
+        .craft-card:nth-child(1) {
+            transform: rotate(-2deg);
+        }
+
+        .craft-card:nth-child(2) {
+            transform: rotate(1.5deg);
+        }
+
+        .craft-card:nth-child(3) {
+            transform: rotate(-1deg);
+        }
+
+        .craft-card img {
+            width: 100%;
+            aspect-ratio: 1 / 1.05;
+            object-fit: cover;
+            background: #e7f0f1;
+        }
+
+        .craft-card h3 {
+            position: absolute;
+            right: 4px;
+            bottom: 0;
+            left: 4px;
+            margin: 0;
+            color: #657681;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.15rem;
+            text-align: center;
+        }
+
+        .hobby-intro {
+            max-width: 700px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .craft-note {
+            margin-top: 30px;
+            padding: 18px 22px;
+            background: #eef6e9;
+            border: 1px dashed #b8cdb0;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.15rem;
+            text-align: center;
+        }
+
+        /* =========================================
+           9. LITTLE THINGS I LOVE
+        ========================================= */
+
+        .little-title {
+            margin-top: 55px;
+            color: var(--blue-dark);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 23px;
+        }
+
+        .favorite-card {
+            min-width: 0;
+            padding: 20px 15px;
+            background: #f0f7fb;
+            border: 1px dashed #b8d4e0;
+            text-align: center;
+        }
+
+        .favorite-card:nth-child(2) {
+            background: #fff1f4;
+            border-color: #eac5d0;
+        }
+
+        .favorite-card:nth-child(3) {
+            background: #f0f6ec;
+            border-color: #c8d9be;
+        }
+
+        .favorite-icon {
+            font-size: 2rem;
+        }
+
+        .favorite-card h3 {
+            margin: 8px 0;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.3rem;
+        }
+
+        .favorite-card p {
+            margin: 0;
+            font-size: 0.84rem;
+        }
+
+        .editable-note {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        /* =========================================
+           10. LET'S CONNECT
+        ========================================= */
+
+        .connect {
+            padding: 38px 25px;
+            background-color: #f9e7ec;
+            background-image:
+                radial-gradient(
+                    rgba(255,255,255,0.85) 1px,
+                    transparent 1px
+                );
+            background-size: 12px 12px;
+            border: 1px dashed #dfaebb;
+            text-align: center;
+        }
+
+        .connect h2 {
+            margin: 0 0 10px;
+            color: #a6667d;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+        }
+
+        .connect p {
+            margin: 0 auto 20px;
+            max-width: 500px;
+        }
+
+        .instagram-link {
+            display: inline-block;
+            padding: 11px 22px;
+            background: #fffefa;
+            border: 1px solid #dfaebb;
+            border-radius: 5px;
+            color: #a6667d;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .instagram-link:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            padding: 24px 10px 8px;
+            color: var(--muted);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        /* =========================================
+           11. RESPONSIVE UNTUK HP DAN TABLET
+        ========================================= */
+
+        @media (max-width: 720px) {
+            .page {
+                width: 96%;
+                margin: 12px auto;
+                padding: 12px;
+            }
+
+            .navbar {
+                justify-content: center;
+                padding: 12px;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 35px;
+                padding: 40px 23px;
+            }
+
+            .hero-copy {
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .hero-bottom {
+                justify-content: center;
+            }
+
+            .hero-photo-area {
+                width: 75%;
+                max-width: 270px;
+            }
+
+            .section {
+                padding: 45px 20px;
+            }
+
+            .about-grid,
+            .experience-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .experience-photo {
+                max-width: 480px;
+                width: 90%;
+                margin: auto;
+            }
+
+            .craft-grid {
+                gap: 10px;
+            }
+
+            .craft-card {
+                padding: 6px 6px 31px;
+            }
+
+            .craft-card h3 {
+                font-size: 0.95rem;
+            }
+
+            .favorites-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flower-decoration {
+                right: -13px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .info-item {
+                grid-template-columns: 78px 1fr;
+            }
+
+            .craft-grid {
+                gap: 7px;
+            }
+
+            .craft-card {
+                padding: 5px 5px 30px;
+            }
+
+            .craft-card h3 {
+                font-size: 0.82rem;
+            }
+
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+        }
+
+        /* Mengurangi animasi gerak bagi pengguna yang
+           memilih pengaturan minim gerakan di perangkatnya. */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .emoji-pop.show {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- =========================================
+         NAVIGASI UTAMA
+    ========================================== -->
+
+    <nav class="navbar">
+        <a class="brand" href="#home">Dimey's Journal ♡</a>
+
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#hobbies">Hobbies</a>
+            <a href="#connect">Contact</a>
+        </div>
+    </nav>
+
+
+    <!-- =========================================
+         SECTION 1: OPENING
+    ========================================== -->
+
+    <header class="hero paper" id="home">
+
+        <div class="hero-copy">
+
+            <span class="sticker">a little introduction ♡</span>
+
+            <h1>
+                Halo,<br>
+                Aku <span>Dini!</span>
+            </h1>
+
+            <p class="hero-description">
+                Halo! Aku Dini Meydiani, seorang mahasiswa Teknik
+                Logistik semester 5, yang suka mengabadikan cerita kecil,
+                membuat karya handmade, dan menulis journal harian untuk mengatur jadwal sehari-hari.
+            </p>
+
+            <div class="hero-bottom">
+                <a class="button-link" href="#about">
+                    Get to know me ↓
+                </a>
+
+                <a class="button-link pink-button" href="#hobbies">
+                    My little hobbies ♡
+                </a>
+            </div>
+
+            <p class="hero-note">
+                "Small steps, little memories, and handmade things."
+            </p>
+
+        </div>
+
+        <div class="hero-photo-area">
+
+            <span class="flower-decoration" aria-hidden="true">🌼</span>
+            <span class="heart-decoration" aria-hidden="true">♡</span>
+
+	<div class="photo-frame">
+                <img
+                    src="Dinimey.jpg"
+                    alt="Foto perkenalan Dini Meydiani"
+                >
+
+                <div class="photo-caption">
+                    this is me! ♡
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         SECTION 2: ABOUT ME
+    ========================================== -->
+
+    <section class="section paper" id="about">
+
+        <div class="tape"></div>
+
+        <h2 class="section-heading">
+            <button type="button" class="title-trigger"
+                    data-emoji="🌷"
+                    aria-label="About Me, klik untuk memunculkan emoji bunga">
+                About Me
+            </button>
+
+            <span class="emoji-pop" aria-live="polite"></span>
+        </h2>
+
+        <p class="section-subtitle">
+ 		Sedikit detail informasi tentangku
+        </p>
+
+        <div class="about-grid">
+
+            <article class="about-note">
+                <span class="sticker blue">HaLo!</span>
+
+
+                <p>
+                    Aku tertarik pada hal-hal yang berhubungan dengan
+                    journaling, mulai dari menyusun halaman jurnal,
+                    mengoleksi stiker, sampai memadukan warna dan
+                    tekstur kertas. Karena itu, aku memilih tema
+                    scrapbook di halaman ini.
+                </p>
+
+                <div class="interest-tags">
+                    <span class="sticker">journaling</span>
+                    <span class="sticker green">handmade</span>
+                    <span class="sticker blue">pastel things</span>
+                </div>
+            </article>
+
+            <article class="info-card">
+                <h3>Identitas ✿</h3>
+
+                <dl class="info-list">
+
+                    <div class="info-item">
+                        <dt>Nama</dt>
+                        <dd>Dini Meydiani</dd>
+                    </div>
+
+                    <div class="info-item">
+                        <dt>Panggilan</dt>
+                        <dd>Dini / Dimey</dd>
+                    </div>
+
+                    <div class="info-item">
+                        <dt>Program Studi</dt>
+                        <dd>Teknik Logistik</dd>
+                    </div>
+
+                    <div class="info-item">
+                        <dt>Kampus</dt>
+                        <dd>Universitas Pendidikan Indonesia</dd>
+                    </div>
+
+                    <div class="info-item">
+                        <dt>Semester</dt>
+                        <dd>5</dd>
+                    </div>
+
+                    <div class="info-item">
+                        <dt>Kelas</dt>
+                        <dd>A</dd>
+                    </div>
+
+                </dl>
+            </article>
+
+        </div>
+
+        <span class="click-hint">
+            ✿ Psst... klik judul section untuk memunculkan emoji!
+        </span>
+
+    </section>
+
+
+    <!-- =========================================
+         SECTION 3: EXPERIENCE
+    ========================================== -->
+
+    <section class="section paper" id="experience">
+
+        <div class="tape pink"></div>
+
+        <h2 class="section-heading">
+            <button type="button" class="title-trigger"
+                    data-emoji="✂️"
+                    aria-label="My Experience, klik untuk memunculkan emoji gunting">
+                My Experience
+            </button>
+
+            <span class="emoji-pop" aria-live="polite"></span>
+        </h2>
+
+        <p class="section-subtitle">
+           Pengalaman berorganisasi, dan bekerja sama dengan teman-teman.
+        </p>
+
+        <div class="experience-grid">
+
+            <figure class="experience-photo">
+                <img
+                    src="PTL.jpg"
+                    alt="Dokumentasi kegiatan organisasi HMTL"
+                >
+
+                <figcaption>
+                    Sedikit dokumentasi dengan teman-teman ♡
+                </figcaption>
+            </figure>
+
+            <div class="experience-copy">
+
+                <span class="sticker green">organization diary</span>
+
+                <p>
+                    Selama kuliah, aku mendapat kesempatan untuk
+                    belajar bekerja sama, bertanggung jawab, dan
+                    mengenal banyak teman melalui kegiatan organisasi
+                    dan kepanitiaan.
+                </p>
+
+                <p>
+                    Berikut beberapa perjalanan yang menjadi bagian
+                    dari pengalaman organisasiku.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="timeline">
+
+            <article class="timeline-item">
+                <span class="year-label">2025–2026</span>
+
+                <h3>Staff Pengembangan Teknik Logistik2025-2026</h3>
+
+                <p>
+                    Bergabung sebagai staff Bidang Pengembangan Teknik
+                    Logistik HMTL FPTI UPI. Aku mengikuti berbagai
+                    kegiatan kepanitiaan dan berkolaborasi dengan
+                    teman-teman dari bidang lainnya.
+                </p>
+            </article>
+
+            <article class="timeline-item">
+                <span class="year-label">A memorable project</span>
+
+                <h3>Ketua Pelaksana ACEM 2026</h3>
+
+                <p>
+                    Menjadi Ketua Pelaksana Academic Coaching and
+                    Empowerment (ACEM) 2026, sebuah pengalaman yang
+                    mengajarkanku tentang koordinasi, komunikasi,
+                    perencanaan, dan tanggung jawab dalam menjalankan
+                    sebuah kegiatan.
+                </p>
+            </article>
+
+            <article class="timeline-item">
+                <span class="year-label">2026–2027</span>
+
+                <h3>Wakil Ketua Bidang Pengembangan Teknik Logistik 2026-2027</h3>
+
+                <p>
+                    Melanjutkan perjalanan di HMTL FPTI UPI sebagai
+                    Wakil Ketua Bidang Pengembangan Teknik Logistik.
+                    Aku ingin terus belajar, berkembang, dan
+                    berkontribusi bersama tim.
+                </p>
+            </article>
+
+        </div>
+
+        <span class="click-hint">
+            ✂ Klik judul section untuk melihat emoji!
+        </span>
+
+    </section>
+
+
+    <!-- =========================================
+         SECTION 4: HOBBIES & LITTLE THINGS I LOVE
+    ========================================== -->
+
+    <section class="section paper" id="hobbies">
+
+        <div class="tape green"></div>
+
+        <h2 class="section-heading">
+            <button type="button" class="title-trigger"
+                    data-emoji="🧶"
+                    aria-label="Hobbies, klik untuk memunculkan emoji benang rajut">
+                Hobbies & Little Things I Love
+            </button>
+
+            <span class="emoji-pop" aria-live="polite"></span>
+        </h2>
+
+        <p class="section-subtitle">
+            Made by hand ♡
+        </p>
+
+        <div class="hobby-intro">
+            <p>
+                Salah satu hal yang aku suka adalah membuat sesuatu
+                dengan tangan sendiri. Aku senang merajut, menyulam,
+                dan menjahit. Bagiku, proses membuat karya handmade
+                adalah cara menyenangkan untuk berkreasi, belajar
+                hal baru, dan menikmati waktu luang.
+            </p>
+
+            <span class="sticker pink">
+                handmade with love ♡
+            </span>
+        </div>
+
+
+        <!-- TIGA FOTO KARYA DALAM SATU BARIS -->
+
+        <div class="craft-grid">
+
+            <article class="craft-card">
+
+                <img
+                    src="Crochet.jpg"
+                    alt="Hasil karya rajutan Dini"
+                    loading="lazy"
+                >
+
+                <h3>Crochet 🧶</h3>
+
+            </article>
+
+            <article class="craft-card">
+
+                <img
+                    src="Embroidery.jpg"
+                    alt="Hasil karya sulaman Dini"
+                    loading="lazy"
+                >
+
+                <h3>Embroidery 🌷</h3>
+
+            </article>
+
+            <article class="craft-card">
+
+
+                <img
+                    src="Journal.jpg"
+                    alt="Journal Dini"
+                    loading="lazy"
+                >
+
+                <h3>Journaling</h3>
+
+            </article>
+
+        </div>
+
+        <div class="craft-note">
+           Beberapa Karya yang aku buat♡
+        </div>
+
+
+        <!-- HAL-HAL LAIN YANG DISUKAI -->
+
+        <h3 class="little-title">
+            Other Little Things I Love
+        </h3>
+
+        <div class="favorites-grid">
+
+            <article class="favorite-card">
+                <div class="favorite-icon" aria-hidden="true">📚</div>
+
+                <h3>Books & Stories</h3>
+
+                <p>
+                    Terkadang aku juga suka membaca buku, yang dipinjam dari Perpustakaan. Biasanya membaca novel, dan saat ini sedang membaca novel Funiculi Funicula: Before The Coffe Gets Cold karya Toshikazu Kawaguchi.
+                </p>
+            </article>
+
+            <article class="favorite-card">
+                <div class="favorite-icon" aria-hidden="true">🎧</div>
+
+                <h3>Music Corner</h3>
+
+                <p>
+                    Musik juga sering aku dengarkan saat mengerjakan tugas... dan aku suka musik K-pop juga, terutama suka EXO dan suka Cortis akhir-akhir ini:)).
+                </p>
+            </article>
+
+            <article class="favorite-card">
+                <div class="favorite-icon" aria-hidden="true">📔</div>
+
+                <h3>Journal Time</h3>
+
+                <p>
+                    Mengisi jurnal, jadwal perkuliahan, To-Do-List, dan List Tugas Kuliah dengan tambahan stiker, untuk meromantisasi tugas-tugas kuliah itu.
+                </p>
+            </article>
+
+        </div>
+
+        <span class="click-hint">
+            🧶 Klik judul section untuk memunculkan emoji!
+        </span>
+
+    </section>
+
+
+    <!-- =========================================
+         SECTION 5: LET'S CONNECT
+    ========================================== -->
+
+    <footer class="connect paper" id="connect">
+
+        <h2>Let's Connect! ♡</h2>
+
+        <p>
+            Terima kasih sudah mampir ke halaman ini.
+            Aku juga ada di Instagram!
+        </p>
+
+
+        <a
+            class="instagram-link"
+            href="https://www.instagram.com/diniimeydn?exln=MWd5MDU4b3kwMDllZQ=="
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            ♡ Find me on Instagram
+        </a>
+
+    </footer>
+
+
+    <!-- PENUTUP HALAMAN -->
+
+    <div class="footer">
+        Made by Dini Meydiani · a little scrapbook of me 🌷
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     JAVASCRIPT: EMOJI SAAT JUDUL DIKLIK
+========================================== -->
+
+<script>
+    // Mengambil semua tombol judul section.
+    const titleButtons = document.querySelectorAll(".title-trigger");
+
+    titleButtons.forEach(function(button) {
+
+        button.addEventListener("click", function() {
+
+            // Mengambil emoji dari atribut data-emoji.
+            const emoji = button.dataset.emoji;
+
+            // Menemukan tempat emoji yang berada di sebelah judul.
+            const emojiDisplay = button.parentElement.querySelector(
+                ".emoji-pop"
+            );
+
+            // Mengubah emoji yang ditampilkan.
+            emojiDisplay.textContent = emoji;
+
+            // Mengulang animasi kecil setiap kali judul diklik.
+            emojiDisplay.classList.remove("show");
+
+            // Memicu browser memperbarui animasi.
+            void emojiDisplay.offsetWidth;
+
+            emojiDisplay.classList.add("show");
+
+        });
+
+    });
+</script>
+
+</body>
+</html>
